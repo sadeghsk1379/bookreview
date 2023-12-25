@@ -1,25 +1,20 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
 {% block content %}
     <h1>{{ book.title }}</h1>
     <h2>By {{ book.author }}</h2>
     <h3>Genre: {{ book.genre }}</h3>
-
     <h4>Average Rating:</h4>
     {% if average_rating %}
         <span class="rating">{{ average_rating }}</span>
     {% else %}
         <span class="no-rating">No reviews yet</span>
     {% endif %}
-
     <hr>
-
     {% for review in reviews %}
         <div class="review">
             <h4>Rating: {{ review.rating }}</h4>
             <p>{{ review.text }}</p>
         </div>
     {% endfor %}
-
-    <a href="{% url 'submit_review' book.pk %}">Submit a Review</a>
-{% endblock %}
+    <a href="{% url 'submit_review' pk=book.pk %}">Submit a Review</a>
+{% endblock content %}
